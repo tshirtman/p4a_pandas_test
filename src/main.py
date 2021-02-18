@@ -2,17 +2,25 @@
 '''
 from kivy.app import App
 from kivy.lang import Builder
+import pandas as pd
 
 
 KV = '''
 Label:
-    text: 'pretty! \\nAnimation by yosif (https://lottiefiles.com/yoz)\\nAvailable at https://lottiefiles.com/42369-weather-wind'
+    text: app.result
     text_size: self.width, None
     halign: 'center'
 '''
+data = [['a1', 'b1', 'c1'],
+        ['a2', 'b2', 'c2'],
+        ['a3', 'b3', 'c3']]
+
+df = pd.DataFrame(data)
 
 class Application(App):
+    result = StringProperty('')
     def build(self):
+        self.result = format(df)
         return Builder.load_string(KV)
 
 
